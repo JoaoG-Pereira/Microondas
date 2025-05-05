@@ -1,0 +1,6 @@
+[submodule "Microondas"]
+	path = Microondas
+	url = https://github.com/JoaoG-Pereira/Microondas.git
+[submodule "API"]
+	path = API
+	url = https://github.com/JoaoG-Pereira/API.git
