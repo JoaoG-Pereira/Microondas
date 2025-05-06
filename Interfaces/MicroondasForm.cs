@@ -1,6 +1,7 @@
 ﻿using Microondas.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -145,10 +146,12 @@ namespace Microondas
                     InfoTextBox.Text += ".";
                 }
                 InfoTextBox.Text += " ";
+                PanelCentral.BackColor = Color.LightYellow;
             }
             else
             {
                 InfoTextBox.Text += "Aquecimento concluído";
+                PanelCentral.BackColor = Color.Gainsboro;
             }
         }
 
@@ -240,9 +243,26 @@ namespace Microondas
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
+            FazerLogin();
+        }
+
+        private void LoginLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FazerLogin();
+        }
+
+        private void FazerLogin()
+        {
             LoginForm loginForm = new LoginForm();
             loginForm.ShowDialog();
-            if (Configuracoes.USUARIO_LOGADO != null) CarregarProgramasSalvos();
+            if (Configuracoes.USUARIO_LOGADO == null) return;
+
+            CarregarProgramasSalvos();
+            AdicionarButton.Enabled = true;
+            LoginButton.Enabled = false;
+            LoginLabel.Enabled = false;
+            LoginLabel.Visible = false;
+            LoginButton.Text = Configuracoes.USUARIO_LOGADO.nome;
         }
     }
 }
